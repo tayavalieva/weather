@@ -7,6 +7,7 @@ import Input from "../Input/Input";
 
 function App() {
   // apiCitySearch.getCity("London").then((data) => console.log(data));
+
   const london = {
     name: "London",
     lat: 51.5073219,
@@ -18,6 +19,10 @@ function App() {
   const [location, setLocation] = useState(london);
   const [forecast, setForecast] = useState(null);
 
+  const appClassName = `app ${
+    forecast && forecast.current.temp > 20 ? "theme_warm" : "theme_cold"
+  }`;
+
   useEffect(() => {
     apiWeather
       .getWeather(location.lat, location.lon)
@@ -26,7 +31,7 @@ function App() {
 
   const cities = [{ label: "Berlin" }, { label: "London" }, { label: "Berd" }];
   return (
-    <div className='app'>
+    <div className={appClassName}>
       <div>
         <Input cities={cities} />
         {forecast && (
