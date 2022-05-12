@@ -1,20 +1,37 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiCitySearch } from "../../utils/api-city";
+import { apiWeather } from "../../utils/api-weather";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
 import Input from "../Input/Input";
 
 function App() {
   // apiCitySearch.getCity("London").then((data) => console.log(data));
-  const [location, setLocation] = useState("London");
-  console.log(location);
+  const london = {
+    name: "London",
+    lat: 51.5073219,
+    lon: -0.1276474,
+    country: "GB",
+    state: "England",
+  };
+
+  const [location, setLocation] = useState(london);
+  const [forecast, setForecast] = useState(null);
+
+  useEffect(() => {
+    apiWeather
+      .getWeather(location.lat, location.lon)
+      .then((data) => setForecast(data));
+  }, []);
 
   const cities = [{ label: "Berlin" }, { label: "London" }, { label: "Berd" }];
   return (
     <div className='app'>
       <div>
         <Input cities={cities} />
-        <LocationWeatherCard location={location} />
+        {forecast && (
+          <LocationWeatherCard location={location} forecast={forecast} />
+        )}
       </div>
     </div>
   );
