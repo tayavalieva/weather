@@ -1,24 +1,23 @@
-.App {
+.app {
   text-align: center;
-}
-
-.App-header {
-  background-color: bisque;
-  height: 30px;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
+  margin: auto;
+  padding: 20px;
+}
+
+.theme_cold {
+  background-color: #b0d3d1;
+}
+
+.theme_warm {
+  background-color: #f7d793;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-.footer {
-  background-color: bisque;
-  height: 300px;
-  padding: 40px;
 }
