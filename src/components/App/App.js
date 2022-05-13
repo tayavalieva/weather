@@ -1,9 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { apiCitySearch } from "../../utils/api-city";
+
 import { apiWeather } from "../../utils/api-weather";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
-import Input from "../Input/Input";
+import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
 
 function App() {
   // apiCitySearch.getCity("London").then((data) => console.log(data));
@@ -29,11 +29,12 @@ function App() {
       .then((data) => setForecast(data));
   }, []);
 
-  const cities = [{ label: "Berlin" }, { label: "London" }, { label: "Berd" }];
+  const handleCitySelect = () => {};
+
   return (
     <div className={appClassName}>
       <div>
-        <Input cities={cities} />
+        <AutocompleteInput onSelect={handleCitySelect} />
         {forecast && (
           <LocationWeatherCard location={location} forecast={forecast} />
         )}
