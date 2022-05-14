@@ -1,5 +1,4 @@
 import "./DayWeatherCard.css";
-import { Card } from "@mui/material";
 import convertUnixTime from "../../utils/date-convertor";
 import { ICONS_URL } from "../../configs/urls";
 
@@ -8,16 +7,20 @@ const DayWeatherCard = ({ dayWeather }) => {
   const weatherConditions = dayWeather.weather[0];
 
   return (
-    <Card className='daily-weather'>
-      <p>{date}</p>
+    <div className='daily-weather'>
+      <p className='daily-weather__content'>{date}</p>
       <img
         src={`${ICONS_URL}${weatherConditions.icon}.png`}
         alt={weatherConditions.main}
       />
-      <p>{`${dayWeather["temp"]["min"].toFixed()} °C`}</p>
-      <span>-</span>
-      <p>{`${dayWeather["temp"]["max"].toFixed()} °C`}</p>
-    </Card>
+      <p className='daily-weather__content'>{`${dayWeather["temp"][
+        "min"
+      ].toFixed()} °C`}</p>
+      <span className='daily-weather__content'>-</span>
+      <p className='daily-weather__content'>{`${dayWeather["temp"][
+        "max"
+      ].toFixed()} °C`}</p>
+    </div>
   );
 };
 

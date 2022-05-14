@@ -20,13 +20,12 @@ const AutocompleteInput = ({ onSelect }) => {
     [setValue, setShowSuggestions]
   );
 
-  const handleSelectSuggestion = (selectedItemId) => {
-    const location = suggestions[selectedItemId]["name"];
-    const country = suggestions[selectedItemId]["country"];
+  const handleSelectSuggestion = (suggestion) => {
+    const location = suggestion["name"];
+    const country = suggestion["country"];
     setValue(`${location}, ${country}`);
     setShowSuggestions(false);
-    setSuggestions([]);
-    onSelect(suggestions[selectedItemId]);
+    onSelect(suggestion);
   };
 
   useEffect(() => {
@@ -41,15 +40,18 @@ const AutocompleteInput = ({ onSelect }) => {
   }, [value]);
 
   return (
-    <div className='input-wrapper'>
-      <input
-        type='text'
-        name='autocomplete'
-        className='input'
-        value={value}
-        placeholder='City'
-        onChange={handleInputChange}
-      />
+    <div className='input-autocomplete'>
+      <div className='input-wrapper'>
+        <input
+          type='text'
+          name='autocomplete'
+          className='input'
+          value={value}
+          placeholder='City'
+          onChange={handleInputChange}
+          autocomplete='off'
+        />
+      </div>
       {suggestions.length > 0 && value.length > 0 && showSuggestions && (
         <DropdownList
           suggestions={suggestions}

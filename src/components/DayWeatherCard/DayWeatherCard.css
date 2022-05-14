@@ -1,6 +1,19 @@
 .daily-weather {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 0 1px #4056a1, 0 1px 2px #4056a1, 0 1px 2px #4056a1;
+}
+
+.daily-weather__content {
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .daily-weather__content {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
 }

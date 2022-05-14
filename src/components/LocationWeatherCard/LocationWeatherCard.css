@@ -5,8 +5,44 @@
 
 .current-weather__card {
   text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 1px #4056a1, 0 1px 2px #4056a1, 0 1px 2px #4056a1;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .weekly-weather__card {
   margin-top: 20px;
+  padding: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.location__title {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 29px;
+  margin: 0 0 15px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .location-card {
+    padding: 15px;
+  }
+  .current-weather__card {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .weekly-weather__card {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .location__title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }

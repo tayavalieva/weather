@@ -11,24 +11,24 @@ const LocationWeatherCard = ({ location, forecast }) => {
   return (
     <>
       <Paper className='location-card'>
-        <h1>{location.name}</h1>
+        <h1 className='location__title'>{location.name}</h1>
         {forecast && (
           <>
-            <Card className='current-weather__card'>
+            <div className='current-weather__card'>
               <p>{`${currentWeather.temp.toFixed()} °C`}</p>
               <p>{`Feels like: ${currentWeather.feels_like.toFixed()} °C`}</p>
               <img
                 src={`${ICONS_URL}${currentWeatherConditions.icon}@2x.png`}
                 alt={currentWeatherConditions.main}
               />
-            </Card>
-            <Card className='weekly-weather__card'>
+            </div>
+            <div className='weekly-weather__card'>
               <Stack spacing={1}>
-                {dailyWeather.slice(0, 7).map((item) => (
-                  <DayWeatherCard dayWeather={item} />
+                {dailyWeather.slice(0, 7).map((item, index) => (
+                  <DayWeatherCard dayWeather={item} key={index} />
                 ))}
               </Stack>
-            </Card>
+            </div>
           </>
         )}
       </Paper>

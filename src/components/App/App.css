@@ -35,7 +35,6 @@
 
 .theme_warm {
   background-color: bisque;
-  opacity: 0.7;
 }
 
 .search {
@@ -45,4 +44,10 @@
 .forecast {
   width: 100%;
   padding-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .App {
+    padding: 15px 20px;
+  }
 }
