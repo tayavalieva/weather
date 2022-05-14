@@ -27,14 +27,19 @@ function App() {
       .then((data) => setForecast(data));
   }, []);
 
-  const handleCitySelect = () => {};
+  const handleLocationSelect = (location) => {
+    setLocation(location);
+    apiWeather
+      .getWeather(location.lat, location.lon)
+      .then((data) => setForecast(data));
+  };
 
   return (
     <div className={pageClassName}>
       <div className='page__container'>
         <div className='App'>
           <section className='search'>
-            <AutocompleteInput onSelect={handleCitySelect} />
+            <AutocompleteInput onSelect={handleLocationSelect} />
           </section>
           <section className='forecast'>
             {forecast && (

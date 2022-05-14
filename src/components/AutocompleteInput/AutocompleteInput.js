@@ -1,10 +1,12 @@
 import "./AutocompleteInput.css";
 import { useState, useEffect, useCallback } from "react";
 import { apiCitySearch } from "../../utils/api-city";
+import DropdownList from "../DropdownList/DropdownList";
 
 const AutocompleteInput = ({ onSelect }) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const getInputSuggestions = (value) => {
     return apiCitySearch.getCity(value);
@@ -13,9 +15,19 @@ const AutocompleteInput = ({ onSelect }) => {
   const handleInputChange = useCallback(
     (e) => {
       setValue(e.target.value);
+      setShowSuggestions(true);
     },
-    [setValue]
+    [setValue, setShowSuggestions]
   );
+
+  const handleSelectSuggestion = (selectedItemId) => {
+    const location = suggestions[selectedItemId]["name"];
+    const country = suggestions[selectedItemId]["country"];
+    setValue(`${location}, ${country}`);
+    setShowSuggestions(false);
+    setSuggestions([]);
+    onSelect(suggestions[selectedItemId]);
+  };
 
   useEffect(() => {
     if (value) {
@@ -29,14 +41,22 @@ const AutocompleteInput = ({ onSelect }) => {
   }, [value]);
 
   return (
-    <input
-      type='text'
-      name='autocomplete'
-      className='input'
-      value={value}
-      placeholder='City'
-      onChange={handleInputChange}
-    />
+    <div className='input-wrapper'>
+      <input
+        type='text'
+        name='autocomplete'
+        className='input'
+        value={value}
+        placeholder='City'
+        onChange={handleInputChange}
+      />
+      {suggestions.length > 0 && value.length > 0 && showSuggestions && (
+        <DropdownList
+          suggestions={suggestions}
+          onSelectSuggestion={handleSelectSuggestion}
+        />
+      )}
+    </div>
   );
 };
 
