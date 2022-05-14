@@ -11,7 +11,7 @@ const LocationWeatherCard = ({ location, forecast }) => {
   return (
     <>
       <Paper className='location-card'>
-        <h1>{location.name}</h1>
+        <h1 className='location__title'>{location.name}</h1>
         {forecast && (
           <>
             <div className='current-weather__card'>
@@ -22,13 +22,13 @@ const LocationWeatherCard = ({ location, forecast }) => {
                 alt={currentWeatherConditions.main}
               />
             </div>
-            <Card className='weekly-weather__card'>
+            <div className='weekly-weather__card'>
               <Stack spacing={1}>
                 {dailyWeather.slice(0, 7).map((item, index) => (
                   <DayWeatherCard dayWeather={item} key={index} />
                 ))}
               </Stack>
-            </Card>
+            </div>
           </>
         )}
       </Paper>

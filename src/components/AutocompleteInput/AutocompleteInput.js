@@ -49,6 +49,7 @@ const AutocompleteInput = ({ onSelect }) => {
           value={value}
           placeholder='City'
           onChange={handleInputChange}
+          autocomplete='off'
         />
       </div>
       {suggestions.length > 0 && value.length > 0 && showSuggestions && (

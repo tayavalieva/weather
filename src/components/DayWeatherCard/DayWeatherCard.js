@@ -8,14 +8,18 @@ const DayWeatherCard = ({ dayWeather }) => {
 
   return (
     <div className='daily-weather'>
-      <p>{date}</p>
+      <p className='daily-weather__content'>{date}</p>
       <img
         src={`${ICONS_URL}${weatherConditions.icon}.png`}
         alt={weatherConditions.main}
       />
-      <p>{`${dayWeather["temp"]["min"].toFixed()} °C`}</p>
-      <span>-</span>
-      <p>{`${dayWeather["temp"]["max"].toFixed()} °C`}</p>
+      <p className='daily-weather__content'>{`${dayWeather["temp"][
+        "min"
+      ].toFixed()} °C`}</p>
+      <span className='daily-weather__content'>-</span>
+      <p className='daily-weather__content'>{`${dayWeather["temp"][
+        "max"
+      ].toFixed()} °C`}</p>
     </div>
   );
 };
