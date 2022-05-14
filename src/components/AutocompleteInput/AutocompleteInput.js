@@ -41,15 +41,17 @@ const AutocompleteInput = ({ onSelect }) => {
   }, [value]);
 
   return (
-    <div className='input-wrapper'>
-      <input
-        type='text'
-        name='autocomplete'
-        className='input'
-        value={value}
-        placeholder='City'
-        onChange={handleInputChange}
-      />
+    <div className='input-autocomplete'>
+      <div className='input-wrapper'>
+        <input
+          type='text'
+          name='autocomplete'
+          className='input'
+          value={value}
+          placeholder='City'
+          onChange={handleInputChange}
+        />
+      </div>
       {suggestions.length > 0 && value.length > 0 && showSuggestions && (
         <DropdownList
           suggestions={suggestions}

@@ -1,12 +1,15 @@
-.input-wrapper {
-  width: 100%;
+.input-autocomplete {
   position: relative;
+}
+
+.input-wrapper {
+  display: flex;
 }
 
 .input {
   padding: 10px 15px;
+  flex: 1;
   margin: 0;
-  width: 100%;
   border-radius: 4px;
   background-color: inherit;
   outline: none;
