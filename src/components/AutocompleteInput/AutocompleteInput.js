@@ -2,6 +2,7 @@ import "./AutocompleteInput.css";
 import { useState, useEffect, useCallback } from "react";
 import { apiCitySearch } from "../../utils/api-city";
 import DropdownList from "../DropdownList/DropdownList";
+import ClearInputButton from "../ClearInputButton/ClearInputButton";
 
 const AutocompleteInput = ({ onSelect }) => {
   const [inputValue, setInputValue] = useState("");
@@ -55,11 +56,7 @@ const AutocompleteInput = ({ onSelect }) => {
           onChange={handleInputChange}
           autocomplete='off'
         />
-        <button
-          type='reset'
-          className='input-button'
-          onClick={handleClearInputClick}
-        />
+        <ClearInputButton onClick={handleClearInputClick} />
       </div>
       {inputValue.length > 0 && showSuggestions && (
         <DropdownList
