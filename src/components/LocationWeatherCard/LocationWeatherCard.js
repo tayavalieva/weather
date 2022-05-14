@@ -9,18 +9,16 @@ const LocationWeatherCard = ({ location, forecast }) => {
 
   return (
     <>
-      <Paper>
+      <Paper className='location-card'>
         <h1>{location.name}</h1>
         {forecast && (
           <>
-            <Card>
-              <p className='current-weather__temp'>{`${currentWeather.temp.toFixed()} °C`}</p>
-              <p className='current-weather__feels-like'>{`Feels like: ${currentWeather.feels_like.toFixed()} °C`}</p>
-              <p className='current-weather__desc'>
-                {currentWeatherConditions}
-              </p>
+            <Card className='current-weather__card'>
+              <p>{`${currentWeather.temp.toFixed()} °C`}</p>
+              <p>{`Feels like: ${currentWeather.feels_like.toFixed()} °C`}</p>
+              <p>{currentWeatherConditions}</p>
             </Card>
-            <Card>
+            <Card className='weekly-weather__card'>
               <Stack spacing={1}>
                 {dailyWeather.slice(0, 7).map((item) => (
                   <DayWeatherCard dayWeather={item} />
