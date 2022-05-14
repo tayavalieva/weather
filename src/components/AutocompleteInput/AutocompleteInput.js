@@ -20,13 +20,12 @@ const AutocompleteInput = ({ onSelect }) => {
     [setValue, setShowSuggestions]
   );
 
-  const handleSelectSuggestion = (selectedItemId) => {
-    const location = suggestions[selectedItemId]["name"];
-    const country = suggestions[selectedItemId]["country"];
+  const handleSelectSuggestion = (suggestion) => {
+    const location = suggestion["name"];
+    const country = suggestion["country"];
     setValue(`${location}, ${country}`);
     setShowSuggestions(false);
-    setSuggestions([]);
-    onSelect(suggestions[selectedItemId]);
+    onSelect(suggestion);
   };
 
   useEffect(() => {
