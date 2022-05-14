@@ -1,20 +1,15 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
 import { apiWeather } from "../../utils/api-weather";
+import { defaultLocation } from "../../constants/constants";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
 import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
 
 function App() {
-  const london = {
-    name: "London",
-    lat: 51.5073219,
-    lon: -0.1276474,
-    country: "GB",
-    state: "England",
-  };
-
-  const [location, setLocation] = useState(london);
+  const [location, setLocation] = useState(() => {
+    const location = localStorage.getItem("currentLocation");
+    return location == null ? defaultLocation : JSON.parse(location);
+  });
   const [forecast, setForecast] = useState(null);
 
   const pageClassName = `page ${
@@ -29,6 +24,7 @@ function App() {
 
   const handleLocationSelect = (location) => {
     setLocation(location);
+    localStorage.setItem("currentLocation", JSON.stringify(location));
     apiWeather
       .getWeather(location.lat, location.lon)
       .then((data) => setForecast(data));
