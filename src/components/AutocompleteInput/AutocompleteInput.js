@@ -39,6 +39,10 @@ const AutocompleteInput = ({ onSelect }) => {
     }
   }, [inputValue]);
 
+  const handleClearInputClick = () => {
+    setInputValue("");
+  };
+
   return (
     <div className='input-autocomplete'>
       <div className='input-wrapper'>
@@ -50,6 +54,11 @@ const AutocompleteInput = ({ onSelect }) => {
           placeholder='City'
           onChange={handleInputChange}
           autocomplete='off'
+        />
+        <button
+          type='reset'
+          className='input-button'
+          onClick={handleClearInputClick}
         />
       </div>
       {inputValue.length > 0 && showSuggestions && (
