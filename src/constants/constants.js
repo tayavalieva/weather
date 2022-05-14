@@ -5,3 +5,5 @@ export const defaultLocation = {
   country: "GB",
   state: "England",
 };
+
+export const noSuggestionMessage = "No location found";
