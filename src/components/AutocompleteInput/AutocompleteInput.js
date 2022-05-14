@@ -1,4 +1,4 @@
-import styles from "./AutocompleteInput.css";
+import "./AutocompleteInput.css";
 import { useState, useEffect, useCallback } from "react";
 import { apiCitySearch } from "../../utils/api-city";
 
@@ -32,7 +32,7 @@ const AutocompleteInput = ({ onSelect }) => {
     <input
       type='text'
       name='autocomplete'
-      className={styles.input}
+      className='input'
       value={value}
       placeholder='City'
       onChange={handleInputChange}

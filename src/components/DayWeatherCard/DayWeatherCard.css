@@ -1,5 +1,6 @@
-.day-weather {
+.daily-weather {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px;
 }

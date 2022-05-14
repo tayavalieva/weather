@@ -5,7 +5,7 @@ import convertUnixTime from "../../utils/date-convertor";
 const DayWeatherCard = ({ dayWeather }) => {
   const date = convertUnixTime(dayWeather["dt"]);
   return (
-    <Card className='day-weather'>
+    <Card className='daily-weather'>
       <p>{date}</p>
       <p>{dayWeather["weather"][0]["main"]}</p>
       <p>{`${dayWeather["temp"]["min"].toFixed()} °C`}</p>

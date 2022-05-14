@@ -6,8 +6,6 @@ import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
 import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
 
 function App() {
-  // apiCitySearch.getCity("London").then((data) => console.log(data));
-
   const london = {
     name: "London",
     lat: 51.5073219,
@@ -19,7 +17,7 @@ function App() {
   const [location, setLocation] = useState(london);
   const [forecast, setForecast] = useState(null);
 
-  const appClassName = `app ${
+  const pageClassName = `page ${
     forecast && forecast.current.temp > 20 ? "theme_warm" : "theme_cold"
   }`;
 
@@ -32,12 +30,18 @@ function App() {
   const handleCitySelect = () => {};
 
   return (
-    <div className={appClassName}>
-      <div>
-        <AutocompleteInput onSelect={handleCitySelect} />
-        {forecast && (
-          <LocationWeatherCard location={location} forecast={forecast} />
-        )}
+    <div className={pageClassName}>
+      <div className='page__container'>
+        <div className='App'>
+          <section className='search'>
+            <AutocompleteInput onSelect={handleCitySelect} />
+          </section>
+          <section className='forecast'>
+            {forecast && (
+              <LocationWeatherCard location={location} forecast={forecast} />
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );
