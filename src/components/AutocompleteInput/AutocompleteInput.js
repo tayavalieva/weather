@@ -4,7 +4,7 @@ import { apiCitySearch } from "../../utils/api-city";
 import DropdownList from "../DropdownList/DropdownList";
 
 const AutocompleteInput = ({ onSelect }) => {
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -14,30 +14,30 @@ const AutocompleteInput = ({ onSelect }) => {
 
   const handleInputChange = useCallback(
     (e) => {
-      setValue(e.target.value);
+      setInputValue(e.target.value);
       setShowSuggestions(true);
     },
-    [setValue, setShowSuggestions]
+    [setInputValue, setShowSuggestions]
   );
 
   const handleSelectSuggestion = (suggestion) => {
     const location = suggestion["name"];
     const country = suggestion["country"];
-    setValue(`${location}, ${country}`);
+    setInputValue(`${location}, ${country}`);
     setShowSuggestions(false);
     onSelect(suggestion);
   };
 
   useEffect(() => {
-    if (value) {
-      getInputSuggestions(value)
+    if (inputValue) {
+      getInputSuggestions(inputValue)
         .then((suggestions) => {
           setSuggestions(suggestions);
           console.log(suggestions);
         })
         .catch((e) => console.error(e));
     }
-  }, [value]);
+  }, [inputValue]);
 
   return (
     <div className='input-autocomplete'>
@@ -46,15 +46,16 @@ const AutocompleteInput = ({ onSelect }) => {
           type='text'
           name='autocomplete'
           className='input'
-          value={value}
+          value={inputValue}
           placeholder='City'
           onChange={handleInputChange}
           autocomplete='off'
         />
       </div>
-      {suggestions.length > 0 && value.length > 0 && showSuggestions && (
+      {inputValue.length > 0 && showSuggestions && (
         <DropdownList
           suggestions={suggestions}
+          inputValue={inputValue}
           onSelectSuggestion={handleSelectSuggestion}
         />
       )}

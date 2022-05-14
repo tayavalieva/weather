@@ -25,7 +25,11 @@
   transition: font-weight 0.2s ease-in;
 }
 
-.dropdown__item:hover {
+.dropdown__item_active:hover {
   cursor: pointer;
   font-weight: 700;
+}
+
+.dropdown__list_inactive {
+  color: #a0a0a0;
 }
