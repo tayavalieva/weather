@@ -1,6 +1,7 @@
 import "./AutocompleteInput.css";
 import { useState, useEffect, useCallback } from "react";
 import { apiCitySearch } from "../../utils/api-city";
+import DropdownList from "../DropdownList/DropdownList";
 
 const AutocompleteInput = ({ onSelect }) => {
   const [value, setValue] = useState("");
@@ -29,14 +30,19 @@ const AutocompleteInput = ({ onSelect }) => {
   }, [value]);
 
   return (
-    <input
-      type='text'
-      name='autocomplete'
-      className='input'
-      value={value}
-      placeholder='City'
-      onChange={handleInputChange}
-    />
+    <div className='input-wrapper'>
+      <input
+        type='text'
+        name='autocomplete'
+        className='input'
+        value={value}
+        placeholder='City'
+        onChange={handleInputChange}
+      />
+      {suggestions.length > 0 && value.length > 0 && (
+        <DropdownList suggestions={suggestions} />
+      )}
+    </div>
   );
 };
 
