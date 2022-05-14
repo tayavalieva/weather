@@ -24,8 +24,8 @@ const LocationWeatherCard = ({ location, forecast }) => {
             </div>
             <Card className='weekly-weather__card'>
               <Stack spacing={1}>
-                {dailyWeather.slice(0, 7).map((item) => (
-                  <DayWeatherCard dayWeather={item} />
+                {dailyWeather.slice(0, 7).map((item, index) => (
+                  <DayWeatherCard dayWeather={item} key={index} />
                 ))}
               </Stack>
             </Card>
