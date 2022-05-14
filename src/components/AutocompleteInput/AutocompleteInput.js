@@ -6,6 +6,7 @@ import DropdownList from "../DropdownList/DropdownList";
 const AutocompleteInput = ({ onSelect }) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const getInputSuggestions = (value) => {
     return apiCitySearch.getCity(value);
@@ -14,9 +15,19 @@ const AutocompleteInput = ({ onSelect }) => {
   const handleInputChange = useCallback(
     (e) => {
       setValue(e.target.value);
+      setShowSuggestions(true);
     },
-    [setValue]
+    [setValue, setShowSuggestions]
   );
+
+  const handleSelectSuggestion = (selectedItemId) => {
+    console.log("Selected:", selectedItemId);
+    const location = suggestions[selectedItemId]["name"];
+    const country = suggestions[selectedItemId]["country"];
+    setValue(`${location}, ${country}`);
+    setShowSuggestions(false);
+    setSuggestions([]);
+  };
 
   useEffect(() => {
     if (value) {
@@ -39,8 +50,11 @@ const AutocompleteInput = ({ onSelect }) => {
         placeholder='City'
         onChange={handleInputChange}
       />
-      {suggestions.length > 0 && value.length > 0 && (
-        <DropdownList suggestions={suggestions} />
+      {suggestions.length > 0 && value.length > 0 && showSuggestions && (
+        <DropdownList
+          suggestions={suggestions}
+          onSelectSuggestion={handleSelectSuggestion}
+        />
       )}
     </div>
   );

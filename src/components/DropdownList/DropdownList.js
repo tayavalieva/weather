@@ -1,13 +1,20 @@
 import "./DropdownList.css";
 
-const DropdownList = ({ suggestions }) => {
+const DropdownList = ({ suggestions, onSelectSuggestion }) => {
+  const handleClick = (event) => {
+    const selectedId = Number(event.currentTarget.id);
+    onSelectSuggestion(selectedId);
+  };
+
   return (
     <div className='dropdown'>
       <ul className='dropdown__list'>
         {suggestions.map((suggestion, index) => (
           <li
             className='dropdown__item'
-            key={index}
+            key={`${index}${suggestion.name}`}
+            id={index}
+            onClick={handleClick}
           >{`${suggestion.name},  ${suggestion.country}`}</li>
         ))}
       </ul>
