@@ -1,4 +1,4 @@
-import "./DayWeatherCard.css";
+import styles from "./DayWeatherCard.module.css";
 import convertUnixTime from "../../utils/date-convertor";
 import { ICONS_URL } from "../../configs/urls";
 
@@ -7,17 +7,17 @@ const DayWeatherCard = ({ dayWeather }) => {
   const weatherConditions = dayWeather.weather[0];
 
   return (
-    <div className='daily-weather'>
-      <p className='daily-weather__content'>{date}</p>
+    <div className={styles["daily-weather"]}>
+      <p className={styles["daily-weather__content"]}>{date}</p>
       <img
         src={`${ICONS_URL}${weatherConditions.icon}.png`}
         alt={weatherConditions.main}
       />
-      <p className='daily-weather__content'>{`${dayWeather["temp"][
+      <p className={styles["daily-weather__content"]}>{`${dayWeather["temp"][
         "min"
       ].toFixed()} °C`}</p>
-      <span className='daily-weather__content'>-</span>
-      <p className='daily-weather__content'>{`${dayWeather["temp"][
+      <span className={styles["daily-weather__content"]}>-</span>
+      <p className={styles["daily-weather__content"]}>{`${dayWeather["temp"][
         "max"
       ].toFixed()} °C`}</p>
     </div>
