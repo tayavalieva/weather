@@ -54,7 +54,7 @@ const AutocompleteInput = ({ onSelect }) => {
           value={inputValue}
           placeholder='City'
           onChange={handleInputChange}
-          autocomplete='off'
+          autoComplete='off'
         />
         <ClearInputButton onClick={handleClearInputClick} />
       </div>
