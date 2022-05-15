@@ -5,7 +5,7 @@ import { apiWeather } from "../../utils/api-weather";
 import { apiCitySearch } from "../../utils/api-city";
 import { defaultLocation, getPageTheme } from "../../constants/constants";
 import { Alert, LinearProgress } from "@mui/material";
-import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
+import WeatherInfoCard from "../WeatherInfoCard/WeatherInfoCard";
 import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
 
 function App() {
@@ -79,10 +79,7 @@ function App() {
                 </Alert>
               ) : (
                 forecast && (
-                  <LocationWeatherCard
-                    location={location}
-                    forecast={forecast}
-                  />
+                  <WeatherInfoCard location={location} forecast={forecast} />
                 )
               )}
             </section>
