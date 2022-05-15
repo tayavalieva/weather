@@ -49,6 +49,11 @@
   margin-top: 20px;
 }
 
+.preloader {
+  color: #4056a1;
+  background-color: #4056a1;
+}
+
 @media screen and (max-width: 767px) {
   .App {
     padding: 15px 20px;
