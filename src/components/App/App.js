@@ -57,7 +57,7 @@ function App() {
       })
       .finally(setIsLoading(false));
   };
-  console.log(isLoading);
+
   return (
     <div className={pageClassName}>
       <div className={styles.page__container}>
@@ -73,11 +73,7 @@ function App() {
               </Alert>
             ) : (
               forecast && (
-                <LocationWeatherCard
-                  location={location}
-                  forecast={forecast}
-                  isLoading={isLoading}
-                />
+                <LocationWeatherCard location={location} forecast={forecast} />
               )
             )}
           </section>
