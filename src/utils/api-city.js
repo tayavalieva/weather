@@ -1,7 +1,8 @@
 import { API_ROOT_URL } from "../configs/urls";
 import { TOKEN } from "../configs/token";
+import { fetchLocationErrorMessage } from "../constants/constants";
 
-const LIMIT = "2";
+const LIMIT = "4";
 
 class ApiCitySearch {
   constructor(url, token) {
@@ -19,7 +20,7 @@ class ApiCitySearch {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`Error: ${res.status}`);
+      throw Error(fetchLocationErrorMessage);
     }
   };
 }
