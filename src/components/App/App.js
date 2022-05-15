@@ -41,6 +41,7 @@ function App() {
   }, []);
 
   const handleLocationSelect = (location) => {
+    setIsLoading(true);
     setLocation(location);
     localStorage.setItem("currentLocation", JSON.stringify(location));
     apiWeather
@@ -65,18 +66,24 @@ function App() {
           <section className='search'>
             <AutocompleteInput onSelect={handleLocationSelect} />
           </section>
-          <section className={styles.forecast}>
-            {isLoading && <LinearProgress className={styles.preloader} />}
-            {error ? (
-              <Alert severity='error' className={styles.error}>
-                {errorMessage}
-              </Alert>
-            ) : (
-              forecast && (
-                <LocationWeatherCard location={location} forecast={forecast} />
-              )
-            )}
-          </section>
+          {isLoading ? (
+            <LinearProgress className={styles.preloader} />
+          ) : (
+            <section className={styles.forecast}>
+              {error ? (
+                <Alert severity='error' className={styles.error}>
+                  {errorMessage}
+                </Alert>
+              ) : (
+                forecast && (
+                  <LocationWeatherCard
+                    location={location}
+                    forecast={forecast}
+                  />
+                )
+              )}
+            </section>
+          )}
         </div>
       </div>
     </div>

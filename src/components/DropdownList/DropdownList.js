@@ -1,15 +1,10 @@
 import styles from "./DropdownList.module.css";
 import cn from "classnames";
 
-const DropdownList = ({
-  suggestions,
-  onSelectSuggestion,
-  inputValue,
-  errorMessage,
-}) => {
+const DropdownList = ({ suggestions, onSelectSuggestion, errorMessage }) => {
   return (
     <div className={styles.dropdown}>
-      {suggestions.length < 1 && inputValue.length > 0 ? (
+      {errorMessage ? (
         <ul
           className={cn(styles.dropdown__list, styles.dropdown__list_inactive)}
         >

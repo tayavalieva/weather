@@ -50,8 +50,7 @@
 }
 
 .preloader {
-  color: #4056a1;
-  background-color: #4056a1;
+  margin-top: 40px;
 }
 
 @media screen and (max-width: 767px) {
