@@ -3,11 +3,13 @@ import { useState, useEffect, useCallback } from "react";
 import { apiCitySearch } from "../../utils/api-city";
 import DropdownList from "../DropdownList/DropdownList";
 import ClearInputButton from "../ClearInputButton/ClearInputButton";
+import { noSuggestionMessage } from "../../constants/constants";
 
 const AutocompleteInput = ({ onSelect }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(noSuggestionMessage);
 
   const getInputSuggestions = (value) => {
     return apiCitySearch.getCity(value);
@@ -34,9 +36,12 @@ const AutocompleteInput = ({ onSelect }) => {
       getInputSuggestions(inputValue)
         .then((suggestions) => {
           setSuggestions(suggestions);
-          console.log(suggestions);
+          setErrorMessage(noSuggestionMessage);
         })
-        .catch((e) => console.error(e));
+        .catch((error) => {
+          console.error(error);
+          setErrorMessage(error.message);
+        });
     }
   }, [inputValue]);
 
@@ -54,7 +59,7 @@ const AutocompleteInput = ({ onSelect }) => {
           value={inputValue}
           placeholder='City'
           onChange={handleInputChange}
-          autocomplete='off'
+          autoComplete='off'
         />
         <ClearInputButton onClick={handleClearInputClick} />
       </div>
@@ -62,6 +67,7 @@ const AutocompleteInput = ({ onSelect }) => {
         <DropdownList
           suggestions={suggestions}
           inputValue={inputValue}
+          errorMessage={errorMessage}
           onSelectSuggestion={handleSelectSuggestion}
         />
       )}

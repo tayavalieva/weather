@@ -1,5 +1,6 @@
 import { API_ROOT_URL } from "../configs/urls";
 import { TOKEN } from "../configs/token";
+import { fetchWeatherErrorMessage } from "../constants/constants";
 
 class ApiWeather {
   constructor(url, token) {
@@ -17,7 +18,7 @@ class ApiWeather {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`Error: ${res.status}`);
+      throw Error(fetchWeatherErrorMessage);
     }
   };
 }
