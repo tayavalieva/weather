@@ -9,7 +9,7 @@ const AutocompleteInput = ({ onSelect }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(noSuggestionMessage);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const getInputSuggestions = (value) => {
     return apiCitySearch.getCity(value);
@@ -36,7 +36,7 @@ const AutocompleteInput = ({ onSelect }) => {
       getInputSuggestions(inputValue)
         .then((suggestions) => {
           setSuggestions(suggestions);
-          setErrorMessage(noSuggestionMessage);
+          setErrorMessage(null);
         })
         .catch((error) => {
           console.error(error);
@@ -47,6 +47,16 @@ const AutocompleteInput = ({ onSelect }) => {
 
   const handleClearInputClick = () => {
     setInputValue("");
+  };
+
+  const errorMessageToShow = () => {
+    if (errorMessage) {
+      return errorMessage;
+    }
+    if (inputValue.length > 0 && suggestions.length == 0) {
+      return noSuggestionMessage;
+    }
+    return null;
   };
 
   return (
@@ -66,8 +76,7 @@ const AutocompleteInput = ({ onSelect }) => {
       {inputValue.length > 0 && showSuggestions && (
         <DropdownList
           suggestions={suggestions}
-          inputValue={inputValue}
-          errorMessage={errorMessage}
+          errorMessage={errorMessageToShow()}
           onSelectSuggestion={handleSelectSuggestion}
         />
       )}
