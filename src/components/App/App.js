@@ -2,7 +2,7 @@ import styles from "./App.module.css";
 import cn from "classnames";
 import { useEffect, useState } from "react";
 import { apiWeather } from "../../utils/api-weather";
-import { defaultLocation } from "../../constants/constants";
+import { defaultLocation, getPageTheme } from "../../constants/constants";
 import { Alert, LinearProgress } from "@mui/material";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
 import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
@@ -17,12 +17,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const pageClassName = cn(
-    styles.page,
-    forecast && forecast.current.temp > 20
-      ? styles.theme_warm
-      : styles.theme_cold
-  );
+  const pageClassName = cn(styles.page, getPageTheme(styles, forecast));
 
   useEffect(() => {
     apiWeather
