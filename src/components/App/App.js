@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useEffect, useState } from "react";
 import { apiWeather } from "../../utils/api-weather";
 import { defaultLocation } from "../../constants/constants";
-import { Alert } from "@mui/material";
+import { Alert, LinearProgress } from "@mui/material";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
 import AutocompleteInput from "../AutocompleteInput/AutocompleteInput";
 
@@ -15,6 +15,7 @@ function App() {
   const [forecast, setForecast] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const pageClassName = cn(
     styles.page,
@@ -35,7 +36,8 @@ function App() {
         console.log(error);
         setError(true);
         setErrorMessage(error.message);
-      });
+      })
+      .finally(setIsLoading(false));
   }, []);
 
   const handleLocationSelect = (location) => {
@@ -52,9 +54,10 @@ function App() {
         console.log(error);
         setError(true);
         setErrorMessage(error.message);
-      });
+      })
+      .finally(setIsLoading(false));
   };
-
+  console.log(isLoading);
   return (
     <div className={pageClassName}>
       <div className={styles.page__container}>
@@ -62,17 +65,22 @@ function App() {
           <section className='search'>
             <AutocompleteInput onSelect={handleLocationSelect} />
           </section>
-          {error ? (
-            <Alert severity='error' className={styles.error}>
-              {errorMessage}
-            </Alert>
-          ) : (
-            <section className={styles.forecast}>
-              {forecast && (
-                <LocationWeatherCard location={location} forecast={forecast} />
-              )}
-            </section>
-          )}
+          <section className={styles.forecast}>
+            {isLoading && <LinearProgress className={styles.preloader} />}
+            {error ? (
+              <Alert severity='error' className={styles.error}>
+                {errorMessage}
+              </Alert>
+            ) : (
+              forecast && (
+                <LocationWeatherCard
+                  location={location}
+                  forecast={forecast}
+                  isLoading={isLoading}
+                />
+              )
+            )}
+          </section>
         </div>
       </div>
     </div>
