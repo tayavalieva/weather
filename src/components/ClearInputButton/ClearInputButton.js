@@ -1,8 +1,12 @@
-import "./ClearInputButton.css";
+import styles from "./ClearInputButton.module.css";
 
 const ClearInputButton = ({ onClick }) => {
   return (
-    <button type='reset' className='clear-input-button' onClick={onClick} />
+    <button
+      type='reset'
+      className={styles["clear-input-button"]}
+      onClick={onClick}
+    />
   );
 };
 

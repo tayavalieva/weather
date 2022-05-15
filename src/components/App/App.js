@@ -1,4 +1,5 @@
-import "./App.css";
+import styles from "./App.module.css";
+import cn from "classnames";
 import { useEffect, useState } from "react";
 import { apiWeather } from "../../utils/api-weather";
 import { defaultLocation } from "../../constants/constants";
@@ -12,9 +13,12 @@ function App() {
   });
   const [forecast, setForecast] = useState(null);
 
-  const pageClassName = `page ${
-    forecast && forecast.current.temp > 20 ? "theme_warm" : "theme_cold"
-  }`;
+  const pageClassName = cn(
+    styles.page,
+    forecast && forecast.current.temp > 20
+      ? styles.theme_warm
+      : styles.theme_cold
+  );
 
   useEffect(() => {
     apiWeather
@@ -32,12 +36,12 @@ function App() {
 
   return (
     <div className={pageClassName}>
-      <div className='page__container'>
-        <div className='App'>
+      <div className={styles.page__container}>
+        <div className={styles.App}>
           <section className='search'>
             <AutocompleteInput onSelect={handleLocationSelect} />
           </section>
-          <section className='forecast'>
+          <section className={styles.forecast}>
             {forecast && (
               <LocationWeatherCard location={location} forecast={forecast} />
             )}
