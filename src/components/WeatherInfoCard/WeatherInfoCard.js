@@ -1,4 +1,4 @@
-import styles from "./LocationWeatherCard.module.css";
+import styles from "./WeatherInfoCard.module.css";
 import { Paper, Stack } from "@mui/material";
 import DayWeatherCard from "../DayWeatherCard/DayWeatherCard";
 import { ICONS_URL } from "../../configs/urls";
@@ -10,9 +10,11 @@ const LocationWeatherCard = ({ location, forecast }) => {
 
   return (
     <>
-      <Paper className={styles["location-card"]}>
-        <h1 className={styles.location__title}>{location.name}</h1>
-        <div className={styles["current-weather__card"]}>
+      <Paper className={styles["weather-info__card"]}>
+        <h1 className={styles["weather-info__current-location"]}>
+          {location.name}
+        </h1>
+        <div className={styles["weather-info__current"]}>
           <p>{`${currentWeather.temp.toFixed()} °C`}</p>
           <p>{`Feels like: ${currentWeather.feels_like.toFixed()} °C`}</p>
           <img

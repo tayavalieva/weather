@@ -1,9 +1,9 @@
-.location-card {
+.weather-info__card {
   padding: 20px;
   text-align: center;
 }
 
-.current-weather__card {
+.weather-info__current {
   text-align: center;
   padding: 10px;
   border-radius: 4px;
@@ -21,7 +21,7 @@
   line-height: 24px;
 }
 
-.location__title {
+.weather-info__current-location {
   font-weight: 500;
   font-size: 26px;
   line-height: 29px;
@@ -29,10 +29,10 @@
 }
 
 @media screen and (max-width: 767px) {
-  .location-card {
+  .weather-info__card {
     padding: 15px;
   }
-  .current-weather__card {
+  .weather-info__current {
     font-size: 16px;
     line-height: 26px;
   }
@@ -41,7 +41,7 @@
     line-height: 18px;
   }
 
-  .location__title {
+  .weather-info__current-location {
     margin-top: 10px;
     margin-bottom: 10px;
   }

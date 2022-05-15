@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LocationWeatherCard from "../LocationWeatherCard";
+import WeatherInfoCard from "../WeatherInfoCard";
 import { defaultLocation } from "../../../constants/constants";
 
 const forecast = {
@@ -77,9 +77,7 @@ const forecast = {
 };
 
 it("renders location name", async () => {
-  render(
-    <LocationWeatherCard location={defaultLocation} forecast={forecast} />
-  );
+  render(<WeatherInfoCard location={defaultLocation} forecast={forecast} />);
   const locationNameElement = screen.getByText(/manchester/i);
   expect(locationNameElement).toBeInTheDocument();
 });
