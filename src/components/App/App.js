@@ -2,6 +2,7 @@ import styles from "./App.module.css";
 import cn from "classnames";
 import { useEffect, useState } from "react";
 import { apiWeather } from "../../utils/api-weather";
+import { apiCitySearch } from "../../utils/api-city";
 import { defaultLocation, getPageTheme } from "../../constants/constants";
 import { Alert, LinearProgress } from "@mui/material";
 import LocationWeatherCard from "../LocationWeatherCard/LocationWeatherCard";
@@ -54,12 +55,19 @@ function App() {
       .finally(setIsLoading(false));
   };
 
+  const getLocations = (searchTerm) => {
+    return apiCitySearch.getCity(searchTerm);
+  };
+
   return (
     <div className={pageClassName}>
       <div className={styles.page__container}>
         <div className={styles.App}>
           <section className='search'>
-            <AutocompleteInput onSelect={handleLocationSelect} />
+            <AutocompleteInput
+              onSelect={handleLocationSelect}
+              suggestionsProvider={getLocations}
+            />
           </section>
           {isLoading ? (
             <LinearProgress className={styles.preloader} />

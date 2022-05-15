@@ -1,19 +1,14 @@
 import styles from "./AutocompleteInput.module.css";
 import { useState, useEffect, useCallback } from "react";
-import { apiCitySearch } from "../../utils/api-city";
 import DropdownList from "../DropdownList/DropdownList";
 import ClearInputButton from "../ClearInputButton/ClearInputButton";
 import { noSuggestionMessage } from "../../constants/constants";
 
-const AutocompleteInput = ({ onSelect }) => {
+const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const getInputSuggestions = (value) => {
-    return apiCitySearch.getCity(value);
-  };
 
   const handleInputChange = useCallback(
     (e) => {
@@ -33,7 +28,7 @@ const AutocompleteInput = ({ onSelect }) => {
 
   useEffect(() => {
     if (inputValue) {
-      getInputSuggestions(inputValue)
+      suggestionsProvider(inputValue)
         .then((suggestions) => {
           setSuggestions(suggestions);
           setErrorMessage(null);
