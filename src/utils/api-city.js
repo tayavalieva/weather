@@ -2,6 +2,10 @@ import { API_ROOT_URL } from "../configs/urls";
 import { TOKEN } from "../configs/token";
 import { fetchLocationErrorMessage } from "../constants/constants";
 
+//API gets available locations matching the query
+//OpenWeather API docs please refer to https://openweathermap.org/api/geocoding-api
+
+//LIMIT param limits the number of locations with the same name in the OpenWeather API response (for instance, London in the UK and London in the US).
 const LIMIT = "4";
 
 class ApiCitySearch {

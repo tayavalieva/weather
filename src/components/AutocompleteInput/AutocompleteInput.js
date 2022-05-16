@@ -4,6 +4,11 @@ import DropdownList from "../DropdownList/DropdownList";
 import ClearInputButton from "../ClearInputButton/ClearInputButton";
 import { noSuggestionMessage } from "../../constants/constants";
 
+//AutocompleteInput component.
+//Props expected:
+//onSelect - function handling click on a suggested location and setting selected location to the local storage
+//suggestionsProvider - function making API calls to get filtered locations matching user's input
+
 const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);

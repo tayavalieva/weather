@@ -19,6 +19,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  //sets page theme depending on the forecast temperature at the chosen location, default: cold
   const pageClassName = cn(styles.page, getPageTheme(styles, forecast));
 
   useEffect(() => {

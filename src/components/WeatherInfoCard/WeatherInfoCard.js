@@ -3,6 +3,12 @@ import { Paper, Stack } from "@mui/material";
 import DayWeatherCard from "../DayWeatherCard/DayWeatherCard";
 import { ICONS_URL } from "../../configs/urls";
 
+//LocationWeatherCard: renders current weather and 7 days forecast
+//Props expected:
+//location: an object with location name, country, latitude and longtitude provided by API
+//forecast: an object with current and daily weather forecast data provided by API
+//Please refer to API docs for data example: https://openweathermap.org/api/one-call-api
+
 const LocationWeatherCard = ({ location, forecast }) => {
   const currentWeather = forecast.current;
   const currentWeatherConditions = currentWeather.weather[0];
