@@ -4,14 +4,14 @@ A responsive Weather Forecast application built with API: https://openweathermap
 
 ## Table of Contents
 
-Setup the Application
-Run the Application
-Run Tests
-Technology used
-Data sources
-Features
-Testing
-Further plans
+- Setup the Application
+- Run the Application
+- Run Tests
+- Technologies used
+- Data sources
+- Features
+- Testing
+- Further plans
 
 ### Setup the Application
 
@@ -62,7 +62,7 @@ npm run test
 - The user submits a request by selecting a known city from the autosuggest dropdown menu.
 - The application makes live calls to the API and retrieves the relevant weather
   information for the selected city (7-day forecast).
-- Selected location is stored at the client-side storage.
+- Selected location is stored at the browser's local storage.
 - The results from the API are displayed in a user-friendly way, with relevant icons for the
   forecast.
 
@@ -73,7 +73,9 @@ npm run test
 
 ### Testing
 
-Implemented unit tests
+React components are covered with unit tests.
+@testing-library/jest-dom & @testing-library/react have been used to test components' functionality.
+Mocked cities and forecast data are used to not call real API
 
 ### Further plans
 
@@ -88,3 +90,4 @@ Implemented unit tests
 - Show more weather details: humidity, wind direction, wind speed, sunrise, sunset, etc.
 - Switch between metric and imperial units
 - Complete test coverage
+- Migrate to TypeScript
