@@ -43,7 +43,7 @@ npm run test
 
 ### Technology used
 
-- ReactJS, HTML5, CSS modules, Material UI.
+- ReactJS, HTML5, CSS modules, Material UI, useDebounce hook.
 - React Testing Library
 
 ### Data sources
@@ -53,6 +53,8 @@ npm run test
 
 - For the 7-day forecast:
   https://openweathermap.org/api/one-call-api
+
+OpenWeather limits the number of requests at 1000 per day, so I used useDebounce hook to throttle auto suggestions requests. I set 250ms as debounce time to keep smooth user experience.
 
 ### Features
 
