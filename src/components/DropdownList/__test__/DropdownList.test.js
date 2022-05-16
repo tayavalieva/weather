@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import DropdownList from "../DropdownList";
+import {
+  mockedOnSelect,
+  mockErrorMessage,
+} from "../../../assets/__mocks__/mockedAutocompleteInputData";
 
-const mockedOnSelect = jest.fn();
-const mockedSuggestions = [
-  { name: "London", country: "GB" },
-  { name: "London", country: "CA" },
-];
-const mockErrorMessage = null;
+import { mockedSuggestions } from "../../../assets/__mocks__/mockedSuggestionsData";
 
 describe("Dropdown list is rendered and renders multiple items", () => {
   it("is renders passed suggestions", () => {

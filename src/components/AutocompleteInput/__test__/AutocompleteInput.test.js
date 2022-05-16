@@ -1,20 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import {
+  mockedSuggestionsProvider,
+  mockedOnSelect,
+} from "../../../assets/__mocks__/mockedAutocompleteInputData";
 import AutocompleteInput from "../AutocompleteInput";
-
-const mockErrorMessage = null;
-const mockedOnSelect = jest.fn();
-const mockedSuggestionsProvider = (searchTerm) => {
-  const cities = [
-    { name: "London", country: "GB" },
-    { name: "London", country: "CA" },
-    { name: "Londo", country: "NE" },
-    { name: "Linz", country: "AT" },
-  ];
-  return Promise.resolve(
-    cities.filter((city) => city.name.includes(searchTerm))
-  );
-};
 
 describe("Autocomplete input", () => {
   it("renders an input field", () => {
