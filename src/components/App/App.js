@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import cn from "classnames";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { apiWeather } from "../../utils/api-weather";
 import { apiCitySearch } from "../../utils/api-city";
 import { getPageTheme } from "../../utils/get-page-theme";
@@ -22,6 +22,7 @@ function App() {
   const pageClassName = cn(styles.page, getPageTheme(styles, forecast));
 
   useEffect(() => {
+    setIsLoading(true);
     apiWeather
       .getWeather(location.lat, location.lon)
       .then((data) => {
@@ -35,30 +36,16 @@ function App() {
         setErrorMessage(error.message);
       })
       .finally(setIsLoading(false));
-  }, []);
+  }, [location]);
 
   const handleLocationSelect = (location) => {
-    setIsLoading(true);
     setLocation(location);
     localStorage.setItem("currentLocation", JSON.stringify(location));
-    apiWeather
-      .getWeather(location.lat, location.lon)
-      .then((data) => {
-        setForecast(data);
-        setError(false);
-        setErrorMessage(null);
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(true);
-        setErrorMessage(error.message);
-      })
-      .finally(setIsLoading(false));
   };
 
-  const getLocations = (searchTerm) => {
+  const getLocations = useCallback((searchTerm) => {
     return apiCitySearch.getCity(searchTerm);
-  };
+  }, []);
 
   return (
     <div className={pageClassName}>

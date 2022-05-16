@@ -38,7 +38,7 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
           setErrorMessage(error.message);
         });
     }
-  }, [inputValue]);
+  }, [inputValue, suggestionsProvider]);
 
   const handleClearInputClick = () => {
     setInputValue("");
@@ -48,7 +48,7 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
     if (errorMessage) {
       return errorMessage;
     }
-    if (inputValue.length > 0 && suggestions.length == 0) {
+    if (inputValue.length > 0 && suggestions.length === 0) {
       return noSuggestionMessage;
     }
     return null;
