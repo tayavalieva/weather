@@ -1,5 +1,6 @@
 import styles from "./AutocompleteInput.module.css";
 import { useState, useEffect, useCallback } from "react";
+import { useDebounce } from "use-debounce";
 import DropdownList from "../DropdownList/DropdownList";
 import ClearInputButton from "../ClearInputButton/ClearInputButton";
 import { noSuggestionMessage } from "../../constants/constants";
@@ -14,6 +15,7 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [searchTerm] = useDebounce(inputValue, 250);
 
   const handleInputChange = useCallback(
     (e) => {
@@ -32,8 +34,8 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
   };
 
   useEffect(() => {
-    if (inputValue) {
-      suggestionsProvider(inputValue)
+    if (searchTerm) {
+      suggestionsProvider(searchTerm)
         .then((suggestions) => {
           setSuggestions(suggestions);
           setErrorMessage(null);
@@ -43,7 +45,7 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
           setErrorMessage(error.message);
         });
     }
-  }, [inputValue, suggestionsProvider]);
+  }, [searchTerm, suggestionsProvider]);
 
   const handleClearInputClick = () => {
     setInputValue("");
