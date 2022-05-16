@@ -14,18 +14,18 @@ describe("Autocomplete input", () => {
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
-    const inputElement = screen.getByPlaceholderText(/city/i);
+    const inputElement = screen.getByRole("textbox");
     expect(inputElement).toBeInTheDocument();
   });
 
-  it("allows to type into input and get autocomplete suggestions", async () => {
+  it("allows to type into input", async () => {
     render(
       <AutocompleteInput
         onSelect={mockedOnSelect}
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
-    const inputElement = screen.getByPlaceholderText(/city/i);
+    const inputElement = screen.getByRole("textbox");
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "London" } })
     );
@@ -39,7 +39,7 @@ describe("Autocomplete input", () => {
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
-    const inputElement = screen.getByPlaceholderText(/city/i);
+    const inputElement = screen.getByRole("textbox");
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "L" } })
     );
@@ -48,14 +48,14 @@ describe("Autocomplete input", () => {
     expect(dropDownList).toBeInTheDocument();
   });
 
-  it("should fill the input value with a clicked item name", async () => {
+  it("fills the input value with a clicked item name", async () => {
     render(
       <AutocompleteInput
         onSelect={mockedOnSelect}
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
-    const inputElement = screen.getByPlaceholderText(/city/i);
+    const inputElement = screen.getByRole("textbox");
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "London" } })
     );
@@ -66,14 +66,32 @@ describe("Autocomplete input", () => {
     expect(inputElement.value).toBe("London, GB");
   });
 
-  it("should clear the input value", async () => {
+  it("calls onSelect", async () => {
     render(
       <AutocompleteInput
         onSelect={mockedOnSelect}
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
-    const inputElement = screen.getByPlaceholderText(/city/i);
+    const inputElement = screen.getByRole("textbox");
+    await act(async () =>
+      fireEvent.change(inputElement, { target: { value: "London" } })
+    );
+
+    const dropDownSuggestion = screen.getByText(/london, gb/i);
+    await act(async () => fireEvent.click(dropDownSuggestion));
+
+    expect(mockedOnSelect).toHaveBeenCalled();
+  });
+
+  it("clears the input value", async () => {
+    render(
+      <AutocompleteInput
+        onSelect={mockedOnSelect}
+        suggestionsProvider={mockedSuggestionsProvider}
+      />
+    );
+    const inputElement = screen.getByRole("textbox");
     const buttonElement = screen.getByRole("button");
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "London" } })

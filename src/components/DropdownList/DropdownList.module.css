@@ -30,6 +30,10 @@
   font-weight: 700;
 }
 
+.dropdown__error {
+  color: #f13c20;
+}
+
 .dropdown__list_inactive {
-  color: #a0a0a0;
+  opacity: 0.6;
 }

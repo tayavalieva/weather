@@ -12,4 +12,4 @@ export const mockedSuggestionsProvider = (searchTerm) => {
 
 export const mockedOnSelect = jest.fn();
 
-export const mockErrorMessage = null;
+export const mockErrorMessage = "Error";

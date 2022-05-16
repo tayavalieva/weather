@@ -8,7 +8,12 @@ const DropdownList = ({ suggestions, onSelectSuggestion, errorMessage }) => {
         <ul
           className={cn(styles.dropdown__list, styles.dropdown__list_inactive)}
         >
-          <li className={styles.dropdown__item}>{errorMessage}</li>
+          <li
+            className={cn(styles.dropdown__item, styles.dropdown__error)}
+            data-testid='error'
+          >
+            {errorMessage}
+          </li>
         </ul>
       ) : (
         <ul className={styles.dropdown__list}>
