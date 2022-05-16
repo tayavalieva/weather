@@ -2,6 +2,9 @@ import { API_ROOT_URL } from "../configs/urls";
 import { TOKEN } from "../configs/token";
 import { fetchWeatherErrorMessage } from "../constants/constants";
 
+//API gets the weather forecast from OpenWeather
+//For OpenWeather API docs please refer to https://openweathermap.org/api/one-call-api
+
 class ApiWeather {
   constructor(url, token) {
     this._url = url;
