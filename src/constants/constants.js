@@ -9,10 +9,3 @@ export const defaultLocation = {
 export const noSuggestionMessage = "No location found";
 export const fetchWeatherErrorMessage = "Unable to fetch the weather data";
 export const fetchLocationErrorMessage = "Unable to fetch the location data";
-
-export const getPageTheme = (styles, forecast) => {
-  if (forecast) {
-    return forecast.current.temp > 20 ? styles.theme_warm : styles.theme_cold;
-  }
-  return styles.theme_cold;
-};
