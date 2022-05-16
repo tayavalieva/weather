@@ -3,7 +3,7 @@ import cn from "classnames";
 
 const DropdownList = ({ suggestions, onSelectSuggestion, errorMessage }) => {
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} data-testid='dropdown'>
       {errorMessage ? (
         <ul
           className={cn(styles.dropdown__list, styles.dropdown__list_inactive)}

@@ -73,6 +73,7 @@ const AutocompleteInput = ({ onSelect, suggestionsProvider }) => {
           suggestions={suggestions}
           errorMessage={errorMessageToShow()}
           onSelectSuggestion={handleSelectSuggestion}
+          data-testid='dropdown'
         />
       )}
     </div>
