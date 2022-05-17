@@ -49,6 +49,8 @@ describe("Autocomplete input", () => {
   });
 
   it("fills the input value with a clicked item name", async () => {
+    jest.useFakeTimers("modern");
+
     render(
       <AutocompleteInput
         onSelect={mockedOnSelect}
@@ -59,7 +61,9 @@ describe("Autocomplete input", () => {
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "London" } })
     );
-
+    await act(async () => {
+      jest.runAllTimers();
+    });
     const dropDownSuggestion = screen.getByText(/london, gb/i);
     await act(async () => fireEvent.click(dropDownSuggestion));
 
@@ -67,17 +71,22 @@ describe("Autocomplete input", () => {
   });
 
   it("calls onSelect", async () => {
+    jest.useFakeTimers("modern");
+
     render(
       <AutocompleteInput
         onSelect={mockedOnSelect}
         suggestionsProvider={mockedSuggestionsProvider}
       />
     );
+
     const inputElement = screen.getByRole("textbox");
     await act(async () =>
       fireEvent.change(inputElement, { target: { value: "London" } })
     );
-
+    await act(async () => {
+      jest.runAllTimers();
+    });
     const dropDownSuggestion = screen.getByText(/london, gb/i);
     await act(async () => fireEvent.click(dropDownSuggestion));
 
