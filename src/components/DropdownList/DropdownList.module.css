@@ -33,7 +33,3 @@
 .dropdown__error {
   color: #f13c20;
 }
-
-.dropdown__list_inactive {
-  opacity: 0.6;
-}
