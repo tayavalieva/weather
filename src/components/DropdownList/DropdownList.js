@@ -10,24 +10,21 @@ import cn from "classnames";
 const DropdownList = ({ suggestions, onSelectSuggestion, errorMessage }) => {
   return (
     <div className={styles.dropdown} data-testid='dropdown'>
-      {errorMessage ? (
-        <ul
-          className={cn(styles.dropdown__list, styles.dropdown__list_inactive)}
-        >
+      <ul className={styles.dropdown__list}>
+        {errorMessage ? (
           <li
             className={cn(styles.dropdown__item, styles.dropdown__error)}
             data-testid='error'
+            key={"error"}
           >
             {errorMessage}
           </li>
-        </ul>
-      ) : (
-        <ul className={styles.dropdown__list}>
-          {suggestions.map((suggestion, index) => (
+        ) : (
+          suggestions.map((suggestion, index) => (
             <li
               className={cn(
                 styles.dropdown__list,
-                styles.dropdown__list_active
+                styles.dropdown__item_active
               )}
               key={`${index}${suggestion.name}`}
               id={index}
@@ -35,9 +32,9 @@ const DropdownList = ({ suggestions, onSelectSuggestion, errorMessage }) => {
                 onSelectSuggestion(suggestion);
               }}
             >{`${suggestion.name},  ${suggestion.country}`}</li>
-          ))}
-        </ul>
-      )}
+          ))
+        )}
+      </ul>
     </div>
   );
 };
