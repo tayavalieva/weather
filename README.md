@@ -1,5 +1,6 @@
 # Weather App
 
+https://tayavalieva.github.io/weather/
 A responsive Weather Forecast application built with API: https://openweathermap.org/
 
 ## Table of Contents
