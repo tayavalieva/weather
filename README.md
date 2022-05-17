@@ -83,8 +83,9 @@ Mocked cities and forecast data are used to not call real API
 
 ### Further plans
 
+- Store token at .env
 - Close dropdown menu and clear the input field on click outside the element
-- Select dropdown menu element with keyboard and send a request on click Enter
+- Select dropdown menu element with keyboard and send a request on click Enter/Esc
 - Validate user input
 - Refactor AutoCompleteInput: move Input to a separate component
 - Add routing to open daily weather in new tab
